@@ -36,7 +36,6 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 # Initialize an error array.
   $errors = array();
     
-    #$id = $_POST['id'] ;
     $location_id = $_POST['location_id'] ;
     $description = $_POST['description'] ;
     #$create_date = $_POST['create_date'] ;
@@ -78,7 +77,7 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 show_link_records($dbc);
   if($_SERVER[ 'REQUEST_METHOD' ] == 'GET') {
     if(isset($_GET['id']))
-        show_record($dbc, $_GET['id']) ;
+        show_link_record($dbc, $_GET['id']) ;
 }
 
 # Close the connection
@@ -100,20 +99,16 @@ mysqli_close( $dbc ) ;
         <td>Room:</td><td><input type="text" name="room" value = 
         "<?php if (isset($_POST['room'])) echo $_POST['room']; ?>"></td>
     </tr>
-    <tr>
-        <td>Your Name:</td><td><input type="text" name="finder" value = 
+      <tr>
+        <td>Finder:</td><td><input type="text" name="finder" value = 
         "<?php if (isset($_POST['finder'])) echo $_POST['finder']; ?>"></td>
-    </tr>  
+    </tr>
 </table>
 <table>
     <tr>
         <td>Item Status:</td>
-    <!--<td>Lost<input type="radio" name="status" value = "lost"</td>
-    #<td>Found<input type="radio" name="status" value ="found" </td>
-    #<td>Claimed<input type="radio" name="status" value = "claimed"</td> 
-    -->
         <td>
-            <select name = status>
+            <select name = "status">
                 <option value="lost">Lost</option>
                 <option value="claimed">Claimed</option>
                 <option value="found">Found</option>

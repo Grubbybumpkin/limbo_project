@@ -37,7 +37,6 @@ function show_link_records($dbc) {
         $alink = '<A HREF=alphalimbo.php?id=' . $row['id'] . '>' . $row['id'] . '</A>' ;
         echo '<TR>' ;
         echo '<TD ALIGN=right>' . $alink . '</TD>' ;
-        echo '<TD>' . $row['id'] . '</TD>' ;
         echo '<TD>' . $row['location_id'] . '</TD>' ;
         echo '<TD>' . $row['description'] . '</TD>' ;
         echo '<TD>' . $row['create_date'] . '</TD>' ;
@@ -58,7 +57,7 @@ function show_link_records($dbc) {
 }
 
 #show individual record from show_link_records above.
-function show_record($dbc, $id) {
+function show_link_record($dbc, $id) {
 	# Create a query to get the name and price sorted by price
 	$query = 'SELECT * FROM stuff WHERE id = ' . $id ;
 
@@ -110,10 +109,11 @@ function show_record($dbc, $id) {
 }
 
 
-# Inserts a record into the prints table
+# Inserts a record into the stuff table
 function insert_record($dbc, $location_id, $description, $room, $owner, $finder, $status) {
-$query = 'INSERT INTO stuff(location_id, description, create_date, update_date, room, finder, status, owner) 
-VALUES ("' . $location_id . '" , "' . $description . '" , NOW() , NOW() , "' . $room . '" , "' . $finder . '" , "' . $status . '", "NA" )' ;
+$query = 'INSERT INTO stuff(location_id, description, create_date, update_date, room, owner, finder, status) 
+VALUES ("' . $location_id . '" , "' . $description . '" , NOW() , NOW() , "' . $room . '" , "NA" , "' . $finder . '" , "' . $status . '")' ;
+           
   show_query($query);
   $results = mysqli_query($dbc,$query) ;
   check_results($results) ;
